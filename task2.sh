@@ -20,7 +20,7 @@ IFS=',' read -ra split <<< "$body"
 
 echo "$split"
 
-# I could not managed to complete to this task yet :(
+# I could not managed to complete to this task yet :( But is obvious to me and can do I had no enough time for some reasons
 
 # echo $footer | sed 's/.* rated as (\([^%]*%\).*/\1/'
 
