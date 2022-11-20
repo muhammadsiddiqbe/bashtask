@@ -10,9 +10,17 @@ do
   lastname=${fullnameArr[1],,} # get lastname manipulate all to lowercase
 
   email=${firstname:0:1}.$lastname@abc.com # genereate email address
-  DEPARTMENT=
 
-  echo "$id,$location_id,${firstname^} ${lastname^},$title,$department$email" >> accounts_new.csv
+  if grep -q "$email" accounts_new.csv
+  then
+      echo "Duplicate $email"
+      email=${firstname:0:1}.$lastname${location_id:0:1}@abc.com
+  else
+      email=$email
+      echo "not duplicate $email"
+  fi
+
+  echo "$id,$location_id,${firstname^} ${lastname^},$title,$department,$email" >> accounts_new.csv
 
   # printf '%s\n' $id $location_id $name $title $email $department | paste -sd ',' >> accounts_new.csv
 
