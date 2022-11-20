@@ -1,0 +1,3 @@
+jq # sudo apt install jq
+gawk # sudo apt install gawk
+awk # sudo apt install awk
