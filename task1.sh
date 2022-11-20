@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "id,location_id,name,title,email" > accounts_new.csv # add column names
-sed -r 's/,([^,"]*|"[^"]*")/|\1/g' accounts.csv >> data.csv # I used this to replace , to | and it and it became easier to parse then. I found many ways to do it this one may not be most accurate but working :) i need to optimize it :)
+sed -r 's/,([^,"]*|"[^"]*")/|\1/g' accounts.csv > data.csv # I used this to replace , to | and it and it became easier to parse then. I found many ways to do it this one may not be most accurate but working :) i need to optimize it :)
 
-while IFS="|" read -r id location_id name title email
+while IFS="|" read -r id location_id name title email department
 do
 
   fullnameArr=(${name// / }) # split into array
@@ -14,8 +14,7 @@ do
 
   if grep -q "$email" accounts_new.csv # check this email exists
   then
-    echo "Duplicate $email"
-    email=${firstname:0:1}.$lastname$location_id@abc.com # if exists add locatio_id also
+    email=${firstname:0:1}.$lastname$location_id@abc.com # if this email exists generate email adding with location_id
   fi
 
   echo "$id,$location_id,${firstname^} ${lastname^},$title,$email" >> accounts_new.csv
