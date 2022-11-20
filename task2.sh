@@ -20,6 +20,8 @@ IFS=',' read -ra split <<< "$body"
 
 echo "$split"
 
+# I could not managed to complete to this task yet :(
+
 # echo $footer | sed 's/.* rated as (\([^%]*%\).*/\1/'
 
 # IFS="-----------------------------------------------------------------------------------" read -ra result <<< $resultsFile
