@@ -1,7 +1,10 @@
 #!/bin/bash
+file="$1"
+
+echo $file
 
 echo "id,location_id,name,title,email" > accounts_new.csv # add column names
-sed -r 's/,([^,"]*|"[^"]*")/|\1/g' accounts.csv > data.csv # I used this to replace , to | and it and it became easier to parse then. I found many ways to do it this one may not be most accurate but working :) i need to optimize it :)
+sed -r 's/,([^,"]*|"[^"]*")/|\1/g' $file > data.csv # I used this to replace , to | and it and it became easier to parse then. I found many ways to do it this one may not be most accurate but working :) i need to optimize it :)
 
 while IFS="|" read -r id location_id name title email department
 do
@@ -19,6 +22,6 @@ do
 
   echo "$id,$location_id,${firstname^} ${lastname^},$title,$email" >> accounts_new.csv
 
-done < <(tail -n +2 data.csv)
+done < <(tail -n +2 $file)
 
 # I think all working as it is said in the task
