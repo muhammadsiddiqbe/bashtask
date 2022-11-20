@@ -11,11 +11,14 @@ body=$(head -n -2 output.txt | tail -n +3) # tests part
 footer=$(tail -n 1 $file) # get the last line
 
 
-echo "header: $header"
-echo "body: $body"
-echo "footer: $footer"
+# echo "header: $header"
+# echo "body: $body"
+# echo "footer: $footer"
 
-# 
+# EXTRACT BODY VALUES
+IFS=',' read -ra split <<< "$body"
+
+echo "$split"
 
 # echo $footer | sed 's/.* rated as (\([^%]*%\).*/\1/'
 
